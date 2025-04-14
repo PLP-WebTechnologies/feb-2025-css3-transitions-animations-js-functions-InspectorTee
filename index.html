@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Webpage with Animations</title>
+    <style>
+        
+@keyframes colorChange {
+    0% {
+        background-color: red;
+    }
+    50% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: green;
+    }
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin: 50px auto;
+    transition: all 0.5s ease-in-out;
+}
+
+.animate {
+    animation: colorChange 3s infinite;
+}
+
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button onclick="triggerAnimation()">Start Animation</button>
+
+    <script>
+function saveBoxColor(color) {
+    localStorage.setItem('boxColor', color);
+}
+
+
+function loadBoxColor() {
+    const color = localStorage.getItem('boxColor');
+    if (color) {
+        document.querySelector('.box').style.backgroundColor = color;
+    }
+}
+
+
+function triggerAnimation() {
+    const box = document.querySelector('.box');
+    box.classList.add('animate');  
+    saveBoxColor('green');  
+}
+
+
+window.onload = function() {
+    loadBoxColor();
+};
+
+
+</script>
+</body>
+</html>
